@@ -2,18 +2,18 @@
 # Not packaged:
 # /usr/include/KF5
 # /usr/lib/kf5
-%define		kdeframever	5.4
+%define		kdeframever	5.10
 %define		qtver		5.3.2
 %define		kfname		kdesu
 
 Summary:	User interface for running shell commands with root privileges
 Name:		kf5-%{kfname}
-Version:	5.4.0
+Version:	5.10.0
 Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	31cb272872efdc276e2bd751446ad0e0
+# Source0-md5:	b03848605fa4a4daf9548eb49f0aa3d4
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
@@ -70,19 +70,21 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build/ install \
         DESTDIR=$RPM_BUILD_ROOT
 
+%find_lang %{kfname}5 --all-name
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{kfname}5.lang
 %defattr(644,root,root,755)
 %doc README.md
 %attr(755,root,root) %{_libdir}/kf5/kdesu_stub
 %attr(755,root,root) %{_libdir}/kf5/kdesud
 %attr(755,root,root) %ghost %{_libdir}/libKF5Su.so.5
-%attr(755,root,root) %{_libdir}/libKF5Su.so.5.4.0
+%attr(755,root,root) %{_libdir}/libKF5Su.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
