@@ -18,7 +18,7 @@ BuildRequires:	Qt5Test-devel >= %{qtver}
 BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	kf5-extra-cmake-modules >= %{version}
 BuildRequires:	kf5-kconfig-devel >= %{version}
 BuildRequires:	kf5-kcoreaddons-devel >= %{version}
 BuildRequires:	kf5-kdbusaddons-devel >= %{version}
