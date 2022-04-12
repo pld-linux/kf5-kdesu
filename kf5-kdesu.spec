@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.92
+%define		kdeframever	5.93
 %define		qtver		5.9.0
 %define		kfname		kdesu
 
 Summary:	User interface for running shell commands with root privileges
 Name:		kf5-%{kfname}
-Version:	5.92.0
+Version:	5.93.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	b0319bf60befe3570a47a7abe0253d56
+# Source0-md5:	e64a26352331a0720fcfdff55461c224
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5DBus-devel >= %{qtver}
