@@ -1,24 +1,24 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeframever	5.249.0
+%define		kdeframever	5.114
 %define		qtver		5.15.2
 %define		kfname		kdesu
 
 Summary:	User interface for running shell commands with root privileges
 Name:		kf5-%{kfname}
-Version:	5.249.0
-Release:	0.1
+Version:	5.114.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/unstable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	687c2368941a114e5cce05c604792033
+Source0:	https://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
+# Source0-md5:	fa105d5b77b8a079f915dc5fc2355578
 URL:		http://www.kde.org/
-BuildRequires:	Qt6Core-devel >= %{qtver}
-BuildRequires:	Qt6DBus-devel >= %{qtver}
-BuildRequires:	Qt6Gui-devel >= %{qtver}
-BuildRequires:	Qt6Test-devel >= %{qtver}
-BuildRequires:	Qt6Xml-devel >= %{qtver}
+BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5DBus-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5Xml-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16
 BuildRequires:	gettext-devel
 BuildRequires:	kf5-extra-cmake-modules >= %{version}
@@ -35,7 +35,7 @@ BuildRequires:	xz
 Requires:	kf5-dirs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt6dir		%{_libdir}/qt6
+%define		qt5dir		%{_libdir}/qt5
 
 %description
 KDESU provides functionality for building GUI front ends for (password
@@ -74,7 +74,7 @@ Pliki nagłówkowe dla programistów używających %{kfname}.
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-%find_lang %{kfname}6 --all-name --with-kde
+%find_lang %{kfname}5 --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -82,17 +82,18 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{kfname}6.lang
+%files -f %{kfname}5.lang
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %{_prefix}/libexec/kf6/kdesu_stub
-%attr(755,root,root) %{_prefix}/libexec/kf6/kdesud
-%ghost %{_libdir}/libKF6Su.so.6
-%attr(755,root,root) %{_libdir}/libKF6Su.so.*.*
-%{_datadir}/qlogging-categories6/ksu.categories
+%attr(755,root,root) %{_prefix}/libexec/kf5/kdesu_stub
+%attr(755,root,root) %{_prefix}/libexec/kf5/kdesud
+%ghost %{_libdir}/libKF5Su.so.5
+%attr(755,root,root) %{_libdir}/libKF5Su.so.*.*
+%{_datadir}/qlogging-categories5/ksu.categories
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF6/KDESu
-%{_libdir}/cmake/KF6Su
-%{_libdir}/libKF6Su.so
+%{_includedir}/KF5/KDESu
+%{_libdir}/cmake/KF5Su
+%{_libdir}/libKF5Su.so
+%{qt5dir}/mkspecs/modules/qt_KDESu.pri
